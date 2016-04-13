@@ -1,0 +1,12 @@
+description "Cavalcade Daemon"
+author "Human Made"
+
+start on startup
+stop on shutdown
+respawn
+
+chdir <%= @wproot %>
+setuid www-data
+script
+  exec <%= @path %>/runner/bin/cavalcade
+end script
