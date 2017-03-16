@@ -1,0 +1,13 @@
+[Unit]
+Description=CavalcadeRunner
+
+[Service]
+TimeoutStartSec=0
+TimeoutStopSec=600
+Restart=always
+WorkingDirectory=<%= @wproot %>
+User=www-data
+ExecStart=<%= @path %>/runner/bin/cavalcade
+
+[Install]
+WantedBy=multi-user.target
