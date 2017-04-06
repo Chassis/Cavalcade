@@ -13,14 +13,14 @@ This extension can be installed the same as any other Chassis extension:
 ```
 # Clone this repository into your Chassis `extensions` directory:
 cd extensions
-git clone git@github.com:Chassis/Cavalcade.git cavalcade
+git clone --recursive git@github.com:Chassis/Cavalcade.git cavalcade
 
 # Re-provision your Chassis box
 cd ..
 vagrant provision
 ```
 
-You can monitor the Cavalcade Runner by SSHing into your box, then viewing the `/var/log/upstart/cavalcade.log` file. To view it live, simply run `tail -f /var/log/upstart/cavalcade.log`
+You can monitor the Cavalcade Runner by SSHing into your box, then viewing the `/var/log/upstart/cavalcade.log` file. To view it live, simply run `sudo tail -f /var/log/upstart/cavalcade.log`
 
 ## Troubleshooting
 
