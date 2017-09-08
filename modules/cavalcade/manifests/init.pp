@@ -43,7 +43,7 @@ class cavalcade (
     group   => 'root',
     mode    => '0644',
     require => Package["${php_package}-fpm"],
-    notify  => Service["${php_package}-fpm"], 
+    notify  => Service["${php_package}-fpm"],
   }
 
   service { 'cavalcade':
