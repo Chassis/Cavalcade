@@ -46,6 +46,15 @@ class cavalcade (
     notify  => Service["${php_package}-fpm"],
   }
 
+  file { "/etc/${php_dir}/cli/conf.d/cavalcade.ini":
+    ensure  => 'present',
+    content => template('cavalcade/cavalcade.ini.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => Package["${php_package}-cli"],
+  }
+
   service { 'cavalcade':
     ensure => 'running',
   }
