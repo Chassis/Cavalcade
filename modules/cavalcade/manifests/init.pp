@@ -36,7 +36,7 @@ class cavalcade (
     $php_dir = "php/${short_ver}"
   }
 
-  file { "/etc/${php_dir}/fpm/conf.d/cavalcade.ini":
+  file { "/etc/${php_dir}/mods-available/cavalcade.ini":
     ensure  => 'present',
     content => template('cavalcade/cavalcade.ini.erb'),
     owner   => 'root',
@@ -47,12 +47,21 @@ class cavalcade (
   }
 
   file { "/etc/${php_dir}/cli/conf.d/cavalcade.ini":
-    ensure  => 'present',
-    content => template('cavalcade/cavalcade.ini.erb'),
+    ensure  => 'link',
+    target  => "/etc/${php_dir}/mods-available/cavalcade.ini",
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Package["${php_package}-cli"],
+    require => File["/etc/${php_dir}/mods-available/cavalcade.ini"],
+  }
+
+  file { "/etc/${php_dir}/fpm/conf.d/cavalcade.ini":
+    ensure  => 'link',
+    target  => "/etc/${php_dir}/mods-available/cavalcade.ini",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => File["/etc/${php_dir}/mods-available/cavalcade.ini"],
   }
 
   service { 'cavalcade':
