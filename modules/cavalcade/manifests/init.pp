@@ -2,6 +2,10 @@
 class cavalcade (
   $config
 ) {
+  # Set up variables for our templates.
+  $path = '/vagrant/extensions/cavalcade'
+  $wproot = $config[mapped_paths][wp]
+
   if versioncmp($::operatingsystemmajrelease, '15.04') >= 0 {
     file { '/lib/systemd/system/cavalcade.service':
       ensure  => 'file',
