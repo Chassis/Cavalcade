@@ -4,7 +4,8 @@ Description=CavalcadeRunner
 [Service]
 TimeoutStartSec=0
 TimeoutStopSec=600
-Restart=always
+Restart=on-failure
+RestartSec=30s
 WorkingDirectory=<%= @wproot %>
 User=www-data
 ExecStart=<%= @path %>/runner/bin/cavalcade
