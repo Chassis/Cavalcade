@@ -37,9 +37,17 @@ class cavalcade (
 	}
 
 	if versioncmp($::operatingsystemmajrelease, '15.04') >= 0 {
+		exec { 'systemctl enable cavalcade':
+			command     => '/bin/systemctl enable cavalcade',
+			refreshonly => true
+		}
 		file { '/lib/systemd/system/cavalcade.service':
 			ensure  => $file,
 			content => template('cavalcade/systemd.service.erb'),
+			notify  => [
+				Exec['systemctl-daemon-reload'],
+				Exec['systemctl enable cavalcade'],
+			],
 		}
 		File['/lib/systemd/system/cavalcade.service'] -> Service['cavalcade']
 	} else {
