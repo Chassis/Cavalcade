@@ -86,7 +86,7 @@ class cavalcade (
 		require => File["/etc/${php_dir}/mods-available/cavalcade.ini"],
 	}
 
-	file { "/etc/rsyslog.d/cavalcade.conf":
+	file { '/etc/rsyslog.d/cavalcade.conf':
 		ensure  => $present,
 		content => template('cavalcade/cavalcade.conf.erb'),
 		owner   => 'root',
