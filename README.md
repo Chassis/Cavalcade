@@ -20,6 +20,15 @@ cd ..
 vagrant provision
 ```
 
+Alternatively you can add the following to one of your [configuration](http://docs.chassis.io/en/latest/config/#configuration) files.
+```
+extensions:
+    - chassis/cavalcade
+
+synced_folders:
+    logs/upstart: /var/log/upstart
+```
+
 You can monitor the Cavalcade Runner by SSHing into your box, then viewing the `/var/log/upstart/cavalcade.log` file. To view it live, simply run `sudo tail -f /var/log/upstart/cavalcade.log`
 
 ## Troubleshooting

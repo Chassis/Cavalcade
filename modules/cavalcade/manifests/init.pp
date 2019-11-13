@@ -86,6 +86,14 @@ class cavalcade (
 		require => File["/etc/${php_dir}/mods-available/cavalcade.ini"],
 	}
 
+	file { '/etc/rsyslog.d/cavalcade.conf':
+		ensure  => $present,
+		content => template('cavalcade/cavalcade.conf.erb'),
+		owner   => 'root',
+		group   => 'root',
+		mode    => '0644'
+	}
+
 	if ( ! empty( $::config[disabled_extensions] ) and 'chassis/cavalcade' in $config[disabled_extensions] ) {
 		service { 'cavalcade':
 			ensure    => stopped,
